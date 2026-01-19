@@ -118,7 +118,7 @@ color:#94a3b8;
   <!-- ✅ JOIN BUTTON -->
   <a class="join-btn"
      href="https://t.me/+dHIhZ56W8chhYzg1"
-     onclick="fbq('trackCustom','Telegram_Click')">
+     onclick="trackTelegram(event, this)">
      🚀 JOIN OUR COMMUNITY
   </a>
 
@@ -139,6 +139,21 @@ color:#94a3b8;
   </div>
 
 </div>
+<script>
+let telegramFired = false;
 
+function trackTelegram(event, el) {
+  event.preventDefault();
+
+  if (telegramFired) return;
+
+  telegramFired = true;
+  fbq('trackCustom', 'Telegram_Click');
+
+  setTimeout(function () {
+    window.location.href = el.href;
+  }, 300);
+}
+</script>
 </body>
 </html>
